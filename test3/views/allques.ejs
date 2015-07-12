@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <section class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/home" class="navbar-brand"><%=person%></a>
+    </section>
+    <section id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/person">My Questions </a></li>
+            <li><a href="/myexams">My Exams </a></li>
+            <li><a href="/allques">Questions of All Users</a></li>
+            <li><a href="/othersExams">Other's Exams</a></li>
+		    <li><a href="/logout">Logout</a></li>
+        </ul>
+    </section>
+</nav><br><br><br>
+<section class='container'>
+	<!-- List of all questions of all users -->
+	<%if(questions.length==0){%>
+		<h2><span class="fa fa-lock"></span> No Questions</h2>
+	<%} else { %>
+		<center><h1><span class="fa fa-user"></span>Questions Of All Users</h1></center>
+		<%for(j=page; j<page+5; j++) {
+			if(j<questions.length) {%>
+		        <section class="panel panel-default">
+		            <section class="panel-heading">
+		                <h4 class="panel-title">
+		                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=j%>"><strong><%=questions[j].name%>'s:</strong> <%=questions[j].question%></a>
+		                </h4>
+		            </section>
+		            <section id="collapse<%=j%>" class="panel-collapse collapse">
+		                <section class="panel-body">
+		                    <p><strong>Solution: </strong><%=questions[j].solution%></p>
+		                </section>
+		            </section>
+		        </section><br>
+			<%} else {%>
+		        <section class="panel panel-default">
+		            <section class="panel-heading">
+		                <h4 class="panel-title">
+		                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=j%>">No Question</a>
+		                </h4>
+		            </section>
+		            <section id="collapse<%=j%>" class="panel-collapse collapse">
+		                <section class="panel-body">
+		                    <p>No Solution</p>
+		                </section>
+		            </section>
+		        </section><br>
+			<%}
+		}%>
+
+		<%if(questions.length<=5) {%>
+			<ul class="pager">
+			    <li class="previous disabled"><a href="#">&larr; Previous</a></li>
+			    <li class="next disabled"><a href="#">Next &rarr;</a></li>
+			</ul>
+		<%} else {%>
+			<%if(page+5>questions.length-1) {%>
+				<ul class="pager">
+				    <li class="previous"><a href="/allques/<%=page-5%>">&larr; Previous</a></li>
+				    <li class="next disabled"><a href="#">Next &rarr;</a></li>
+				</ul>
+			<%} else {%>
+				<%if(page==0) {%>
+					<ul class="pager">
+					    <li class="previous disabled"><a href="#">&larr; Previous</a></li>
+					    <li class="next"><a href="/allques/<%=page+5%>">Next &rarr;</a></li>
+					</ul>
+				<%} else {%>
+					<ul class="pager">
+					    <li class="previous"><a href="/allques/<%=page-5%>">&larr; Previous</a></li>
+					    <li class="next"><a href="/allques/<%=page+5%>">Next &rarr;</a></li>
+					</ul>
+				<%}%>
+			<%}%>
+		<%}%>
+	<%}%>
+</section><br><hr>
+</body>
+</html>

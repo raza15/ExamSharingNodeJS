@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		var v = <%-arr %>;
+		$('input.typeahead').typeahead({
+			name: 'accounts',
+			local:v
+		});
+	});  
+	</script>
+	<style type="text/css">
+	.bs-example{
+		font-family: sans-serif;
+		position: relative;
+		margin: 100px;
+	}
+	.typeahead, .tt-query, .tt-hint {
+		border: 2px solid #CCCCCC;
+		border-radius: 8px;
+		font-size: 24px;
+		height: 30px;
+		line-height: 30px;
+		outline: medium none;
+		padding: 8px 12px;
+		width: 396px;
+	}
+	.typeahead {
+		background-color: #FFFFFF;
+	}
+	.typeahead:focus {
+		border: 2px solid #0097CF;
+	}
+	.tt-query {
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	}
+	.tt-hint {
+		color: #999999;
+	}
+	.tt-dropdown-menu {
+		background-color: #FFFFFF;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 8px;
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		margin-top: 12px;
+		padding: 8px 0;
+		width: 422px;
+	}
+	.tt-suggestion {
+		font-size: 24px;
+		line-height: 24px;
+		padding: 3px 20px;
+	}
+	.tt-suggestion.tt-is-under-cursor {
+		background-color: #0097CF;
+		color: #FFFFFF;
+	}
+	.tt-suggestion p {
+		margin: 0;
+	}
+</style>
+</head>
+<body>
+<section class='container'>
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <section class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/home" class="navbar-brand"><%=person.name%></a>
+    </section>
+    <section id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/person">My Questions </a></li>
+            <li><a href="/myexams">My Exams </a></li>
+            <li><a href="/allques">Questions of All Users</a></li>
+		    <li><a href="/othersExams">Other's Exams</a></li>
+		    <li><a href="/logout">Logout</a></li>
+        </ul>
+    </section>
+</nav>
+<section class='container'><section class='jumbotron'>
+	<center><h3><span class="fa fa-user"></span>Welcome <%=person.name%>!</h3></center><br>
+	<h4><span class="fa fa-user"></span>Your Username: <%=person.username%></h4><br>
+	<h4><span class="fa fa-user"></span>Number Of Questions You Have: <%=person.userQuestionsids.length%></h4><br>
+	<h4><span class="fa fa-user"></span>Number Of Exams You Have: <%=person.myexams.length%></h4><br>
+	<h4><span class="fa fa-user"></span>Users With Whome You Share Your Exams With: <%=person.shareExamsWith.length%>
+	<br>
+	<%for(i=0; i<person.shareExamsWith.length; i++) {%>
+		<%if(i%4==0) {%>
+			
+				<br>
+		<%} else {%>
+			,
+		<%}%>
+		<%=person.shareExamsWith[i].username%>
+	<%}%></h4><br>
+	
+	<%if(l==0) {%>
+		<h4><span class="fa fa-user"></span>You Share Your Exams With All Users!<br> Thus, you cannot add more!</h4>
+	<%} else {%>
+		<h4><span class="fa fa-user"></span>Add Users With Whome To Share Your Exams With:</h4>
+		<form action='/UsersToShareExamsWith' method='post'>
+			<input type="text" class="typeahead tt-query" placeholder="Search user that's not added" name="UserNaam"><br>
+			<button type="submit" class="btn btn-primary">Add!</button>
+		</form>
+	<%}%>
+</section></section>
+</section><br><br><br><br><br><br><br>
+</body>
+</html>

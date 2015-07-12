@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <section class="navbar-header">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/home" class="navbar-brand"><%=person%></a>
+    </section>
+    <section id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="/person">My Questions </a></li>
+            <li><a href="/myexams">My Exams </a></li>
+            <li><a href="/allques">Questions of All Users</a></li>
+            <li><a href="/othersExams">Other's Exams</a></li>
+		    <li><a href="/logout">Logout</a></li>
+        </ul>
+    </section>
+</nav><br><br><br>
+<section class='container'>
+	<center><h1><span class="fa fa-user"></span>Exams Of Users Who Share Their Exams With You</h1></center>
+    <%for(i=page;i<page+5;i++) {%>
+        <%if(i<users.length) {%>
+            <section class="panel panel-default">
+                <section class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>"><strong><%=users[i].username%>'s Exam # <%=users[i].Examnum%>:</strong> <%=users[i].Examname%></a>
+                    </h4>
+                </section>
+                <section id="collapse<%=i%>" class="panel-collapse collapse">
+                    <section class="panel-body">
+                        <dl class="dl-horizontal">
+                            <%for(l=0; l<users[i].examquests.length; l++) {%>
+                                <dt>Question <%=l+1%>: </dt>
+                                <dd><%=users[i].examquests[l].text%></dd>
+                                <dt>Solution: </dt>
+                                <dd><%=users[i].examquests[l].solution%></dd><br>
+                            <%}%>
+                        </dl>                           
+                    </section>
+                </section>
+            </section><br>
+        <%} else {%>
+            <section class="panel panel-default">
+                <section class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=i%>">No Exam</a>
+                    </h4>
+                </section>
+                <section id="collapse<%=i%>" class="panel-collapse collapse">
+                    <section class="panel-body">
+                        <dl class="dl-horizontal">
+                            No Details
+                        </dl>                           
+                    </section>
+                </section>
+            </section><br>
+        <%}%>    
+    <%}%>
+    <%if(users.length<=5) {%>
+        <ul class="pager">
+            <li class="previous disabled"><a href="#">&larr; Previous</a></li>
+            <li class="next disabled"><a href="#">Next &rarr;</a></li>
+        </ul>
+    <%} else {%>
+        <%if(page+5>users.length-1) {%>
+            <ul class="pager">
+                <li class="previous"><a href="/othersExams/<%=page-5%>">&larr; Previous</a></li>
+                <li class="next disabled"><a href="#">Next &rarr;</a></li>
+            </ul>
+        <%} else {%>
+            <%if(page==0) {%>
+                <ul class="pager">
+                    <li class="previous disabled"><a href="#">&larr; Previous</a></li>
+                    <li class="next"><a href="/othersExams/<%=page+5%>">Next &rarr;</a></li>
+                </ul>
+            <%} else {%>
+                <ul class="pager">
+                    <li class="previous"><a href="/othersExams/<%=page-5%>">&larr; Previous</a></li>
+                    <li class="next"><a href="/othersExams/<%=page+5%>">Next &rarr;</a></li>
+                </ul>
+            <%}%>
+        <%}%>
+    <%}%><br><hr>
+</section>
+</body>
+</html>

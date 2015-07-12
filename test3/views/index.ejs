@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	
+</head>
+<body>
+<h1>OLO</h1>
+<section class="container">
+	<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+		<center><h1><span class="fa fa-lock"></span>  Exams/Questions Sharing Website</span></h1></center>
+	</nav><br><br><br><br><br><br>
+	<section class="jumbotron">
+		<span class="fa fa-lock"></span><strong> Already Have An Account? Login Now!</strong>
+		<form action='/login' method='post'>
+			<section class='form-group'>
+				<input type="text" class="form" placeholder="Username" name="username">
+				<!-- <label>Enter Password</label> -->
+				<input type="password" class="form" placeholder="Password" name="password"><br>
+				<button type="submit" class="btn btn-primary">Login</button>
+			</section>
+		</form>
+	</section>
+	<section class='jumbotron'>
+		<span class="fa fa-lock"></span><strong> Don't Have An Account? Make One Now!</strong>
+		<form action='/signup' method='post'>
+			<section class='form-group'>
+				<input type="text" class="form" placeholder="Enter Full Name" name="name">
+			</section>
+			<section class='form-group'>
+				<input type="text" class="form" placeholder="Choose a Username" name="username">
+			</section>
+			<section class='form-group'>
+				<input type="password" class="form" placeholder="Enter Password" name="password">
+			</section>
+			<section class='form-group'>
+				<input type="password" class="form" placeholder="Conform Password" name="conform">
+			</section>
+			<button type="submit" class="btn btn-primary">Signup</button>
+		</form>
+	</section><hr>
+</section>
+</body>
+</html>

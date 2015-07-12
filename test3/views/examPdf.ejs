@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<section class='container'>
+	<!--List of Questions-->
+	<center><h2><span class="fa fa-user"></span> <%=exam.Examname%></h2></center>
+	<dl class="dl-horizontal">
+		<% for(i=0; i<exam.examquests.length; i++) { %>
+	  			<dt>Question # <%=i+1%> )</dt>
+		    	<dd><%=exam.examquests[i].text%></dd><br>
+		    	<dt>Answer )</dt>
+		    	<dd>
+			    	<%for(j=0; j<parseInt(exam.examquests[i].lines); j++){%>
+			    		<hr>
+			    	<%}%>
+		    	</dd><br>
+  		<%}%>
+	</dl>
+</section>
+</body>
+</html>
