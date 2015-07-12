@@ -14,7 +14,7 @@ Running the Project:
 Open command prompt in any dir, then type:
 	path1 --dbpath "path2"
 path1 = path to mongod.exe = C:\Users\Nadeem\Downloads\Compressed\mongodb-win32-x86_64-2008plus-2.6.3\mongodb-win32-x86_64-2008plus-2.6.3\bin\mongod.exe
-path2 = Path to local database = C:\Users\Nadeem\Documents\GitHub\ExamSharingNodeJS\test3\data
+path2 = Path to local dir which acts as database = C:\Users\Nadeem\Documents\GitHub\ExamSharingNodeJS\test3\data
 
 Open command prompt in project dir, then type:
 	node app.js
